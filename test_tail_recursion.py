@@ -4,6 +4,8 @@ from fact import *
 from exp import *
 from fib import *
 from real import *
+from sum_list import *
+from concat_2d_list import *
 
 class TestFactorial:
     """Factorial function tests"""
@@ -64,3 +66,35 @@ class TestReal:
     
     def test_frame_limit(self):
         real_tr(1000)
+
+class TestSumList:
+    """Sum list function tests"""
+
+    def test_one(self):
+        assert sum_list([1]) == sum_list_tr([1])
+    
+    def test_five(self):
+        assert sum_list([1, 2, 3, 4, 5]) == sum_list_tr([1, 2, 3, 4, 5])
+    
+    def test_max_frames(self):
+        with pytest.raises(RecursionError):
+            sum_list([1] * 1000)
+    
+    def test_frame_limit(self):
+        sum_list_tr([1] * 1000)
+
+class TestConcat2DList:
+    """Concatenating lists inside a list function tests"""
+
+    def test_one(self):
+        assert concat_2d_list([[1, 2]]) == concat_2d_list_tr([[1, 2]])
+    
+    def test_five(self):
+        assert concat_2d_list([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]) == concat_2d_list_tr([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]])
+    
+    def test_max_frames(self):
+        with pytest.raises(RecursionError):
+            concat_2d_list([[1]] * 1000)
+    
+    def test_frame_limit(self):
+        concat_2d_list_tr([[1]] * 1000)
