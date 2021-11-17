@@ -6,6 +6,7 @@ from fib import *
 from real import *
 from sum_list import *
 from concat_2d_list import *
+from combine_ord_lists import *
 
 class TestFactorial:
     """Factorial function tests"""
@@ -98,3 +99,19 @@ class TestConcat2DList:
     
     def test_frame_limit(self):
         concat_2d_list_tr([[1]] * 1000)
+    
+class TestCombineOrdList:
+    """Combining ordered lists function tests"""
+
+    def test_one(self):
+        assert combine_ord_lists([1], [2]) == combine_ord_lists_tr([1], [2])
+    
+    def test_five(self):
+        assert combine_ord_lists([1, 3, 5, 7, 9], [2, 4, 6, 8, 10]) == combine_ord_lists_tr([1, 3, 5, 7, 9], [2, 4, 6, 8, 10])
+    
+    def test_max_frames(self):
+        with pytest.raises(RecursionError):
+            combine_ord_lists(list(range(1, 1000, 2)), list(range(2, 1001, 2)))
+    
+    def test_frame_limit(self):
+        combine_ord_lists_tr(list(range(1, 1000, 2)), list(range(2, 1001, 2)))
