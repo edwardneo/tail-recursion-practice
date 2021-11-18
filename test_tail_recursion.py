@@ -7,6 +7,7 @@ from real import *
 from sum_list import *
 from concat_2d_list import *
 from combine_ord_lists import *
+from minimum import *
 
 class TestFactorial:
     """Factorial function tests"""
@@ -115,3 +116,19 @@ class TestCombineOrdList:
     
     def test_frame_limit(self):
         combine_ord_lists_tr(list(range(1, 1000, 2)), list(range(2, 1001, 2)))
+
+class TestMinimum:
+    """Minimum function tests"""
+
+    def test_one(self):
+        assert minimum([1]) == minimum_tr([1])
+    
+    def test_five(self):
+        assert minimum([5, 4, 3, 2, 1]) == minimum_tr([5, 4, 3, 2, 1])
+    
+    def test_max_frames(self):
+        with pytest.raises(RecursionError):
+            minimum(list(range(1000, 0, -1)))
+    
+    def test_frame_limit(self):
+        minimum_tr(list(range(1000, 0, -1)))
