@@ -8,6 +8,7 @@ from sum_list import *
 from concat_2d_list import *
 from combine_ord_lists import *
 from minimum import *
+from reverse_list import *
 
 class TestFactorial:
     """Factorial function tests"""
@@ -132,3 +133,19 @@ class TestMinimum:
     
     def test_frame_limit(self):
         minimum_tr(list(range(1000, 0, -1)))
+
+class TestReverseList:
+    """List reversal function tests"""
+
+    def test_one(self):
+        assert reverse_list([1]) == reverse_list_tr([1])
+    
+    def test_five(self):
+        assert reverse_list([1, 2, 3, 4, 5]) == reverse_list_tr([1, 2, 3, 4, 5])
+    
+    def test_max_frames(self):
+        with pytest.raises(RecursionError):
+            reverse_list(list(range(1, 1001)))
+    
+    def test_frame_limit(self):
+        reverse_list_tr(list(range(1, 1001)))
