@@ -9,6 +9,7 @@ from concat_2d_list import *
 from combine_ord_lists import *
 from minimum import *
 from reverse_list import *
+from count_hailstone import *
 
 class TestFactorial:
     """Factorial function tests"""
@@ -149,3 +150,19 @@ class TestReverseList:
     
     def test_frame_limit(self):
         reverse_list_tr(list(range(1, 1001)))
+
+class TestCountHailstone:
+    """Hailstone length function tests"""
+
+    def test_one(self):
+        assert count_hailstone(1) == count_hailstone_tr(1)
+    
+    def test_five(self):
+        assert count_hailstone(5) == count_hailstone_tr(5)
+    
+    def test_max_frames(self):
+        with pytest.raises(RecursionError):
+            count_hailstone(9780657630)
+    
+    def test_frame_limit(self):
+        count_hailstone_tr(9780657630)
