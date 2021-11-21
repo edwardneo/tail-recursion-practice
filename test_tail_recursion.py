@@ -10,6 +10,7 @@ from combine_ord_lists import *
 from minimum import *
 from reverse_list import *
 from count_hailstone import *
+from maximum import *
 
 class TestFactorial:
     """Factorial function tests"""
@@ -128,6 +129,9 @@ class TestMinimum:
     def test_five(self):
         assert minimum([5, 4, 3, 2, 1]) == minimum_tr([5, 4, 3, 2, 1])
     
+    def test_key(self):
+        assert minimum([1, 2, 3, 4, 5], lambda x: -x) == minimum_tr([1, 2, 3, 4, 5], lambda x: -x)
+    
     def test_max_frames(self):
         with pytest.raises(RecursionError):
             minimum(list(range(1000, 0, -1)))
@@ -166,3 +170,22 @@ class TestCountHailstone:
     
     def test_frame_limit(self):
         count_hailstone_tr(9780657630)
+
+class TestMaximum:
+    """Maximum function tests"""
+
+    def test_one(self):
+        assert maximum([1]) == maximum_tr([1])
+    
+    def test_five(self):
+        assert maximum([1, 2, 3, 4, 5]) == maximum_tr([1, 2, 3, 4, 5])
+    
+    def test_key(self):
+        assert maximum([5, 4, 3, 2, 1], lambda x: -x) == maximum_tr([5, 4, 3, 2, 1], lambda x: -x)
+    
+    def test_max_frames(self):
+        with pytest.raises(RecursionError):
+            maximum(list(range(1000, 0, -1)))
+    
+    def test_frame_limit(self):
+        maximum_tr(list(range(1000, 0, -1)))
