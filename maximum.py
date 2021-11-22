@@ -8,7 +8,7 @@ def maximum(lst, key=lambda x: x):
     elif len(lst) == 1:
         return lst[0]
 
-    max_val = maximum(lst[1:])
+    max_val = maximum(lst[1:], key)
     if key(lst[0]) > key(max_val):
         return lst[0]
     else:

@@ -8,7 +8,7 @@ def minimum(lst, key=lambda x: x):
     elif len(lst) == 1:
         return lst[0]
 
-    min_val = minimum(lst[1:])
+    min_val = minimum(lst[1:], key)
     if key(lst[0]) < key(min_val):
         return lst[0]
     else:
