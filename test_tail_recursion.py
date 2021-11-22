@@ -113,6 +113,9 @@ class TestCombineOrdList:
     def test_five(self):
         assert combine_ord_lists([1, 3, 5, 7, 9], [2, 4, 6, 8, 10]) == combine_ord_lists_tr([1, 3, 5, 7, 9], [2, 4, 6, 8, 10])
     
+    def test_key(self):
+        assert combine_ord_lists([10, 8, 6, 4, 2], [9, 7, 5, 3, 1], lambda x: -x) == combine_ord_lists_tr([10, 8, 6, 4, 2], [9, 7, 5, 3, 1], lambda x: -x)
+
     def test_max_frames(self):
         with pytest.raises(RecursionError):
             combine_ord_lists(list(range(1, 1000, 2)), list(range(2, 1001, 2)))
