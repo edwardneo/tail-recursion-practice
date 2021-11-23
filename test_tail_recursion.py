@@ -11,6 +11,7 @@ from minimum import *
 from reverse_list import *
 from count_hailstone import *
 from maximum import *
+from create_range import *
 
 class TestFactorial:
     """Factorial function tests"""
@@ -192,3 +193,22 @@ class TestMaximum:
     
     def test_frame_limit(self):
         maximum_tr(list(range(1000, 0, -1)))
+
+class TestCreateRange:
+    """Range function tests"""
+
+    def test_one(self):
+        assert create_range(0, 1) == create_range_tr(0, 1)
+    
+    def test_five(self):
+        assert create_range(0, 5) == create_range_tr(0, 5)
+    
+    def test_interval(self):
+        assert create_range(10, 0, -2) == create_range_tr(10, 0, -2)
+
+    def test_max_frames(self):
+        with pytest.raises(RecursionError):
+            create_range(0, 1000)
+
+    def test_frame_limit(self):
+        create_range_tr(0, 1000) 
