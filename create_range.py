@@ -1,7 +1,10 @@
 from trampoline import trampoline
 
-def create_range(start, end, interval=1):
+def create_range(start, end=None, interval=1):
     """Basic recursive range function"""
+
+    if end == None:
+        start, end = 0, start
 
     if start >= end:
         return []
@@ -10,8 +13,11 @@ def create_range(start, end, interval=1):
     return [start] + create_range(start + interval, end, interval)
 
 @trampoline
-def create_range_tr(start, end, interval=1):
+def create_range_tr(start, end=None, interval=1):
     """Tail recursive range function"""
+
+    if end == None:
+        start, end = 0, start
 
     def create_range_helper(start, lst):
         if start >= end:

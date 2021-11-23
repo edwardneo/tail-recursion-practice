@@ -205,10 +205,13 @@ class TestCreateRange:
     
     def test_interval(self):
         assert create_range(10, 0, -2) == create_range_tr(10, 0, -2)
+    
+    def test_one_arg(self):
+        assert create_range(10) == create_range_tr(10)
 
     def test_max_frames(self):
         with pytest.raises(RecursionError):
             create_range(0, 1000)
 
     def test_frame_limit(self):
-        create_range_tr(0, 1000) 
+        create_range_tr(0, 1000)
