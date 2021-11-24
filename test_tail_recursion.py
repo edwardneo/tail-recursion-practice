@@ -12,6 +12,7 @@ from reverse_list import *
 from count_hailstone import *
 from maximum import *
 from create_range import *
+from find_fringe import *
 
 class TestFactorial:
     """Factorial function tests"""
@@ -215,3 +216,32 @@ class TestCreateRange:
 
     def test_frame_limit(self):
         create_range_tr(0, 1000)
+
+class TestFindFringe:
+    """Find fringe function tests"""
+
+    def test_one(self):
+        tree = Tree(1, fringe=True)
+        assert find_fringe(tree) == find_fringe_tr(tree)
+    
+    def test_five(self):
+        tree = Tree(1, [Tree(2), Tree(3, [Tree(4, fringe=True), Tree(5, fringe=True)], fringe=True)])
+        assert find_fringe(tree) == find_fringe_tr(tree)
+    
+    def test_max_frame(self):
+        tree = self.create_1000_tree()
+        with pytest.raises(RecursionError):
+            find_fringe(tree)
+    
+    def test_frame_limit(self):
+        tree = self.create_1000_tree()
+        find_fringe_tr(tree)
+    
+    def create_1000_tree(self):
+        tree = Tree(0)
+        tree_count = tree
+        for i in range(1, 1500):
+            tree_count.branches = [Tree(i, fringe=(i>1400))]
+            tree_count = tree_count.branches[0]
+        return tree
+            
